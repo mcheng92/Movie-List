@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block navigation %}
+<nav>
+   <ul>
+        <li><a href="{% url 'home' %}" >Home</a> </li>
+        <li><a href="{% url 'index' %}" class="current">Movies</a> </li>
+        <li><a href="{% url 'cast-index' %}">Characters/Casts</a></li>
+
+
+   </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+     <button style="margin-top: 10px;"><a href="{% url 'add' %}">Add Movie</a></button>
+   <div class="grid">
+        {% for movie in movies %}
+        <div class="grid-item">
+             <h2>{{ movie.name }}</h2>
+             <img src="{% static 'image/' %}{{ movie.image }}" alt="{{ movie.name }}" width="500" height="300">
+        </div>
+        
+        <div class="grid-item">
+             <a href="{% url 'detail' movie.pk %}"
+                  class="button">Details</a>
+             <a href="{% url 'edit' movie.pk %}"
+                  class="button">Edit</a>
+             <a href="{% url 'delete' movie.pk %}"
+                  class="button">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

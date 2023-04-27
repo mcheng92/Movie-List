@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block navigation %}
+<nav>
+   <ul>
+        <li><a href="{% url 'home' %}">Home</a> </li>
+        <li><a href="{% url 'index' %}">Movie</a></li>
+        <li><a href="{% url 'cast-index' %}">Characters/Casts</a></li>
+</ul> </nav>
+{% endblock %}
+
+
+{% block content %}
+<h2>Add Cast member</h2>
+
+{% if movies_exist %}
+   <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Add Cast member</button>
+      <button type="button" class="button" onclick="window.location.href='{% url 'cast-index' %}'">Cancel</button>
+   </form>
+
+{% else %}
+   <p>No movies available in the database. Please add a movie first</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block navigation %}
+<nav>
+   <ul>
+        <li><a href="{% url 'home' %}">Home</a> </li>
+        <li><a href="{% url 'add' %}">Add Movie</a></li>
+        <li><a href="{% url 'cast-index' %}" class="current">Characters/Casts</a></li>
+</ul> </nav>
+{% endblock %}
+
+
+{% block content %}
+<h2>Edit Character</h2>
+<form method="post">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <button type="submit">Edit Character</button>
+</form>
+{% endblock %}
+ 

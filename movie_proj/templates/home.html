@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block navigation %}
+<nav>
+   <ul>
+        <li><a href="{% url 'home' %}" class="current">Home</a> </li>
+        <li><a href="{% url 'index' %}">Movies</a> </li>
+        <li><a href="{% url 'cast-index' %}">Characters/Casts</a></li>
+
+
+   </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+   <div class="grid">
+
+        <h1 style="text-align: center";>Welcome to my movie list project</h1>
+
+        <div>
+            <span> 
+               The site consists of 3 tabs on the nav bar (Home, Movie, Charcacter), each with a 'home' page of their respective tab. In both "Movie" & "Characters" home pages, 
+               the user is able to add movies and characters of their choosing. When the button is clicked, it brings them to "/add/" url where it creates a form for them to fill out. Once filled,
+               it brings the user back to the respective 'home page' with the added objects. The user is able to view, edit, and delete if they wish to.
+            </span>
+        </div>
+       
+    </div>
+{% endblock %}

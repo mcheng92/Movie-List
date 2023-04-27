@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div method="warning">
+   Are you sure you want to delete {{ cast.name }}?
+</div>
+<form method="post">
+   {% csrf_token %}
+   <button type="submit">Confirm {{ cast.name }}</button>
+   <button type="button" class="button" onclick="window.location.href='{% url 'cast-index' %}'">Cancel</button>
+</form>
+{% endblock %}

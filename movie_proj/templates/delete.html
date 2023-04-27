@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block styles %}
+   <link rel="stylesheet" href="{% static 'css/styles.css' %}">   
+{% endblock %}
+
+{% block navigation %}
+<nav>
+   <ul>
+      <li><a href="{% url 'home' %}">Home</a> </li>
+      <li><a href="{% url 'index' %}">Movie</a></li>
+      <li><a href="{% url 'cast-index' %}">Characters/Casts</a></li>
+   </ul>
+</nav>
+{% endblock %}
+
+{% block content %} 
+<div method="warning" style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+   Are you sure you want to delete {{ movie.name }}?
+</div>
+
+<form method="post" style="display: flex; justify-content: center; align-items: center; ">
+   {% csrf_token %}
+   <button type="submit">Confirm</button>
+   <button type="button" class="button" onclick="window.location.href='{% url 'index' %}'" style="margin-left: 10px;">Cancel</button>
+</form>
+{% endblock %}

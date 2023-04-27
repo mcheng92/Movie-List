@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block navigation %}
+<nav>
+   <ul>
+        <li><a href="{% url 'home' %}">Home</a> </li>
+        <li><a href="{% url 'index' %}">Movie</a> </li>
+        <li><a href="{% url 'cast-index' %}" class="current">Characters/Casts</a></li>
+</ul> </nav>
+{% endblock %}
+
+
+{% block content %}
+   <div class="grid">
+        <div class="grid-item">
+             {% for movie in cast.movie.all %}
+             <h1>Movie: {{ movie.name }}</h1>
+             {% endfor %}
+        </div>
+
+        <div class="grid-item">
+             <h2 bold>Actor Details</h2>
+             <img src="{{ cast.actor_image.url }}" alt="{{ cast.actor_image }}" width="300" height="300">
+             <h4>Actor: {{ cast.actor }}</h4>
+             <h4>Age: {{ cast.actor_age }} 
+               {% if cast.deceased %}
+                    <span class="box">(Deceased)</span>
+               {% endif %}
+             </h4>
+
+             <button class="button" onclick="window.location.href='{% url 'edit-cast' cast.pk %}'">Edit</button>
+             <button type="button" class="button" onclick="window.location.href='{% url 'cast-index' %}'">Cancel</button>
+        </div>
+   </div>
+{% endblock %}

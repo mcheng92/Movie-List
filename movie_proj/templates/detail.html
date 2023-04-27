@@ -1,0 +1,55 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block styles %}
+   <link rel="stylesheet" href="{% static 'css/styles.css' %}">   
+{% endblock %}
+
+{% block navigation %}
+<nav>
+   <ul>
+        <li><a href="{% url 'home' %}">Home</a> </li>
+        <li><a href="{% url 'index' %}" class="current" >Movie</a> </li>
+        <li><a href="{% url 'cast-index' %}">Characters/Casts</a></li>
+   </ul> 
+</nav>
+{% endblock %}
+
+{% block content %}
+ 
+   <div class="grid">
+
+     <div class="grid-item">
+          <h2>{{ movie.name }}</h2>
+          <img src="{% static 'image/' %}{{ movie.image }}" alt="{{ movie.name }}" width="500" height="300">
+     </div>
+
+     <div class="grid-item">
+          <h3>{{ movie.name }} Details</h3>
+          <ul>
+               <li>Genres: {{ movie.genres }}</li>
+               <li>Number of Films: {{ movie.number_Of_Films }}</li>
+
+          </ul>  
+      </div>
+
+     {% comment %}
+     # To display the character/actors 
+
+      <div class="grid-item">
+          <h3>Cast</h3>
+          {% for cast in movie.cast.all %}
+               <h1>Actor: {{ cast.actor }}</h1>
+               <h3>Character: {{ cast.character }}</h3>
+          {% endfor %} 
+     </div>
+     
+     {% endcomment %}
+     
+
+     <form action="{% url 'index' %}">
+          <button class="button" style="margin-left: 10px;">Back</button>
+     </form>
+
+    </div>
+{% endblock %}
